@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+    
+    <grid name="exchange-program-grid" title="Exchange Programs" model="com.axelor.apps.uni.db.ExchangeProgram" >
+		<field name="topic" />
+		<field name="university" />
+		<field name="student" />
+		<field name="partnerUniversity" />
+    </grid>
+    
+   	<form name="exchange-program-form" title="Exchange Program" model="com.axelor.apps.uni.db.ExchangeProgram" width="mid">
+   	
+	   	<panel name="firstPanel" >
+			<field name="topic" />
+			<field name="university" />
+			<field name="student" />
+			<field name="partnerUniversity" />
+		</panel>
+		
+	</form>
+</object-views>

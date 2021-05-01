@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+  <module name="uni" package="com.axelor.apps.uni.db"/>
+
+  <entity name="University" lang="java">
+  
+	<binary name="picture" title="Picture" /> 	
+    <string name="name" title="name"/>
+  	<string name="webSite" title="Website"/>
+	<string name="description" title="Description" large="true"/>
+	
+	<one-to-many ref="com.axelor.apps.uni.db.Professor" name="professors" title="Professors"/>
+	<one-to-many ref="com.axelor.apps.uni.db.Student" name="students" title="Students"/>
+	<one-to-many ref="com.axelor.apps.uni.db.UniProject" name="projects" title="University Projects" mappedBy="university"/>
+	 
+	<many-to-many ref="com.axelor.apps.uni.db.University" name="univesities" title="Uni Connection"/>
+	<one-to-many ref="com.axelor.apps.uni.db.ExchangeProgram" name="exchangeProgram" mappedBy="university" title="Exchange Programs"/>
+    
+
+    <track>
+      <field name="name" />
+      <message if="true" on="CREATE">University Contact created</message>
+    </track>
+    
+  </entity>
+
+</domain-models>

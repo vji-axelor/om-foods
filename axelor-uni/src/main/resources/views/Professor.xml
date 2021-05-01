@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+    
+    <grid name="professor-grid" title="Professors" model="com.axelor.apps.uni.db.Professor" >
+     	<field name="firstName" />
+		<field name="lastName" />
+		<field name="phone" />
+		<field name="email" />
+		<field name="university" />
+    </grid>
+    
+   	<form name="professor-form" title="Professor" model="com.axelor.apps.uni.db.Professor" width="mid">
+   	
+   	<panel name="firstPanel" colSpan="12">
+			<field name="firstName" />
+			<field name="lastName" />
+			<field name="phone" />
+			<field name="email" />
+			<field name="university" />
+	</panel>
+		
+	<panel name="sidePanel" sidebar="true" >
+		<field name="createdOn" />
+		<field name="updatedOn" />
+		<field name="createdBy" />
+		<field name="updatedBy" />
+	</panel>
+		
+	</form>
+</object-views>

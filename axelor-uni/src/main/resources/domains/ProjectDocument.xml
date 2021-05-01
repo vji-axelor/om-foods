@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+  <module name="uni" package="com.axelor.apps.uni.db"/>
+
+  <entity name="ProjectDocument" lang="java">
+  
+	<string name="name" title="Title"/>
+	<many-to-one name="documentFile" ref="com.axelor.meta.db.MetaFile" title="Project Document" />
+	<string name="discription" title="Description" />
+	
+	<many-to-one ref="com.axelor.apps.uni.db.UniProject" name="uniProject" />		
+  </entity>
+
+</domain-models>
