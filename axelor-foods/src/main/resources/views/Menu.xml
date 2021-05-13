@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+
+	<menuitem name="om-foods-root" title="OM Foods" order="-108" if=""  icon-background="#2fa042"/>
+	
+	<menuitem name="product-om-foods-root" parent="om-foods-root"
+		title="OM Products" action="om.foods.product.root" order="1"/>
+
+	<action-view name="om.foods.product.root" title="OM Products"
+		model="com.axelor.apps.om.db.OmProduct" >
+		<view type="grid" name="om-product-grid"/>
+		<view type="form" name="om-product-form"/>
+	</action-view>
+	
+	<menuitem name="om-foods-customer-root" parent="om-foods-root"
+		title="OM Customers" action="om.foods.customer.root" order="1"/>
+
+	<action-view name="om.foods.customer.root" title="OM Customer"
+		model="com.axelor.apps.om.db.OmCustomer" >
+		<view type="grid" name="om-customer-grid"/>
+		<view type="form" name="om-customer-form"/>
+	</action-view>
+	
+	<menuitem name="om-container-root" parent="om-foods-root"
+		title="OM Container" action="om.container.root" order="1"/>
+
+	<action-view name="om.container.root" title="OM Container"
+		model="com.axelor.apps.om.db.Container" >
+		<view type="grid" name="om-container-grid"/>
+		<view type="form" name="om-container-form"/>
+	</action-view>
+	
+	<menuitem name="om-invoice-root" parent="om-foods-root"
+		title="OM Invoice" action="om.invoice.root" order="1"/>
+
+	<action-view name="om.invoice.root" title="OM Invoice"
+		model="com.axelor.apps.om.db.OmInvoice" >
+		<view type="grid" name="om-invoice-grid"/>
+		<view type="form" name="om-invoice-form"/>
+	</action-view>
+	
+	<menuitem name="om-foods-config-root" parent="om-foods-root" title="Configuration" order="100"/>
+	
+	<menuitem name="om-foods-product-unit-root" parent="om-foods-config-root"
+		title="Products Unit" action="om.foods.product.unit.root" order="1"/>
+
+	<action-view name="om.foods.product.unit.root" title="Products Unit"
+		model="com.axelor.apps.om.db.ProductUnit" >
+		<view type="grid" name="om-product-unit-grid"/>
+		<view type="form" name="om-product-unit-form"/>
+	</action-view>
+	
+	<menuitem name="om-customer-address-root" parent="om-foods-config-root"
+		title="Customer Address" action="om.foods.customer.address.root" order="2"/>
+
+	<action-view name="om.foods.customer.address.root" title="Customer Address"
+		model="com.axelor.apps.om.db.CustomerAddress" >
+		<view type="grid" name="om-customer-address-grid"/>
+		<view type="form" name="om-customer-address-form"/>
+	</action-view>
+	
+</object-views>

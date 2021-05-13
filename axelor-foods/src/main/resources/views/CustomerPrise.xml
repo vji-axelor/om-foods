@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+    
+    <grid name="om-customer-prise-grid" title="Customer Prise" model="com.axelor.apps.om.db.CustomerPrise">
+	    <field name="customer" readonlyIf="customer != null" onChange="action-customer-prise-attrs-set-personal-prise"/>
+	    <field name="singlePiecePrise" />
+	    <field name="unitPrise" />
+    </grid>
+
+	<form name="om-customer-prise-form" title="Customer Prise" model="com.axelor.apps.om.db.CustomerPrise">
+		<panel name="firstPanel">
+			<field name="customer" readonlyIf="customer != null" onChange="action-customer-prise-attrs-set-personal-prise"/>
+			<field name="singlePiecePrise" />
+		    <field name="unitPrise" />
+		</panel>
+	</form>
+	
+	<action-attrs name="action-customer-prise-attrs-set-personal-prise">
+		<attribute name="value" for="singlePiecePrise" expr="eval: __parent__.pieceSalePrice"/>
+		<attribute name="value" for="unitPrise" expr="eval: __parent__.unitSalePrice"/>
+	</action-attrs>	
+	
+	</object-views>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+	<module name="foods" package="com.axelor.apps.om.db" />
+
+	<entity name="CustomerPrise" lang="java">
+
+       <many-to-one ref="com.axelor.apps.om.db.OmCustomer" name="customer" title="Customer"/>
+       <decimal name="unitPrise" title="Personal Unit Prise" />
+       <decimal name="singlePiecePrise" title="Personal Single Piece Prise"/>
+       <many-to-one ref="com.axelor.apps.om.db.OmProduct" name="omProduct"/>
+<!--  
+address
+ -->
+
+	</entity>
+
+</domain-models>

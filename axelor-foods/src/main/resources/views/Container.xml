@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+    
+    <grid name="om-container-grid" title="Containers" model="com.axelor.apps.om.db.Container">
+	    <field name="name" title="Container"/>
+	    <field name="code" />
+	    <field name="totalProduct" />
+	    <field name="totalCost"/>
+	    <field name="arriveDate" />
+    </grid>
+
+	<form name="om-container-form" title="Container" model="com.axelor.apps.om.db.Container">
+		<panel name="firstPanel">
+			<field name="name" title="Container"/>
+		    <field name="code" />
+		    <field name="totalProduct" />
+		    <field name="totalCost"/>
+		    <field name="arriveDate" />
+		</panel>
+		
+		<panel-related field="products"  canEdit="true" form-view="om-container-product-line-form" grid-view="om-container-product-line-grid"/>
+	</form>
+	</object-views>

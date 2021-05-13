@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+    
+    <grid name="om-customer-grid" title="Om Customer" model="com.axelor.apps.om.db.OmCustomer" orderBy="name">
+	    <field name="picture" widget="Image"/>
+	    <field name="name"/>
+	    <field name="stock"/>
+	    <field name="code" />
+	    <field name="salePrice" width="120" x-scale="2"/>
+	    <field name="purchasePrice" width="120" x-scale="2"/>
+    </grid>
+
+	<form name="om-customer-form" title="Om Customer" model="com.axelor.apps.om.db.OmCustomer" width="1000px">
+		<panel name="firstPanel" colSpan="12">
+			<panel name="imagePanel" colSpan="3">
+				<field name="picture" showTitle="false" widget="Image" colSpan="12"/>
+			</panel>
+	
+			<panel colSpan="9" name="generalInfoPanel" >
+				<field name="name" colSpan="4" css="label-bold bold large"/>
+			</panel>
+		</panel>
+		
+		<panel name="secondPanel"> 
+			<field name="mobilePhone" colSpan="6" />
+			<field name="fixedPhone" colSpan="6" />
+			<field name="emailAddress" colSpan="6" />
+			<field name="webSite" colSpan="6" />
+		</panel>
+		
+		<panel name="thirdPanel"> 
+			<field name="customerAddress" colSpan="6" canNew="true"/>
+		</panel>
+		
+	</form>
+	</object-views>

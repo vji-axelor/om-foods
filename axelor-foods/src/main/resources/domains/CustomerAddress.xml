@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+	<module name="foods" package="com.axelor.apps.om.db" />
+
+	<entity name="CustomerAddress" lang="java">
+
+        <string name="addressL4" title="Address" required="true" namecolumn="true" />
+        <string name="addressL5" title="Distribution precisions (POB, Village...)" />
+        <string name="zip" title="Zip code" />
+        <string name="city" title="City" />
+        <string name="country" title="Country" />
+        
+        <string name="fullAddess"  search="addressL4,addressL5,zip,city,country" title="Address" />
+<!--  
+address
+ -->
+
+	</entity>
+
+</domain-models>

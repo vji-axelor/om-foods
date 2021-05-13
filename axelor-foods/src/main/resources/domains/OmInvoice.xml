@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+	<module name="foods" package="com.axelor.apps.om.db" />
+
+	<entity name="OmInvoice" lang="java">
+
+		<string name="invoiceNumber" title="Invoice Number" namecolumn="true"/>
+		<string name="currency" title="Currency"/>
+		<decimal name="invoiceAmount" title="Total Amount"/>
+		<date name="invoiceDate" title="invoiceDate" />
+		
+		<many-to-one ref="com.axelor.apps.om.db.OmCustomer" name="customer" title="Customer"/>
+		<string name="deliveryAddress" title="Deliver Address"/>
+		
+		
+		<string name="description" title="Description" />
+
+	</entity>
+
+</domain-models>

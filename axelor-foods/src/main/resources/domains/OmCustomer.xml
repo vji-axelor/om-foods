@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+	<module name="foods" package="com.axelor.apps.om.db" />
+
+	<entity name="OmCustomer" lang="java">
+
+		<many-to-one name="picture" ref="com.axelor.meta.db.MetaFile" />
+		<string name="name" title="Name/Company Name" required="true" />
+		<string name="emailAddress" title="Email"/>
+	    <string name="fixedPhone" title="Fixed phone"/>
+	    <string name="mobilePhone" title="Mobile phone"/>
+	    <string name="webSite" title="Website"/>
+		
+		<many-to-one ref="com.axelor.apps.om.db.CustomerAddress" name="customerAddress" title="Customer Address" />
+<!--  
+address
+ -->
+
+	</entity>
+
+</domain-models>

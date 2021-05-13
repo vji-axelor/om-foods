@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+	<module name="foods" package="com.axelor.apps.om.db" />
+
+	<entity name="OmProduct" lang="java">
+
+		<string name="name" title="Name" namecolumn="true"/>
+		<string name="code" title="Code"/>
+
+		<string name="description" large="true" title="Description"/>
+		
+		<many-to-one name="picture" ref="com.axelor.meta.db.MetaFile" />
+
+		<string name="unit" title="Unit"/>
+		<decimal name="unitPiece" title="Total Piece In One Unit" min="0" />
+		<decimal name="unitstock" title="Unit Stock" min="0"/>
+		<decimal name="extraSinglePiece" title="Extra Single Piece"/>
+
+		<decimal name="piecePurchasePrice" title="Single Piece Purchase price" min="0" />
+		<decimal name="unitPurchasePrice" title="Unit Purchase price" min="0" />
+		
+		<decimal name="pieceSalePrice" title="Single Piece Sale price"/>
+		<decimal name="unitSalePrice" title="Unit Sale price"/>
+		
+		<decimal name="totalPiece" title="Total Piece"/>
+		
+		
+		<one-to-many ref="com.axelor.apps.om.db.CustomerPrise" name="customerPrise" title="Customers Prise" mappedBy="omProduct"/>
+
+<!--  
+
+		<many-to-one name="defaultSupplierPartner" ref="com.axelor.apps.base.db.Partner"
+			title="Default supplier" />
+		<many-to-one name="purchaseCurrency" ref="com.axelor.apps.base.db.Currency"
+			title="Purchase / Cost currency" initParam="true" />
+		
+		<many-to-one name="saleCurrency" ref="com.axelor.apps.base.db.Currency"
+			title="Sale currency" initParam="true" />
+	
+
+ -->
+
+	</entity>
+
+</domain-models>
