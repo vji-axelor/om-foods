@@ -31,7 +31,7 @@
 		</panel>
 		
 		<panel name="thirdPanel"> 
-			<field name="customerAddress" colSpan="6" canNew="true"/>
+			<field name="customerAddress" colSpan="6" required="true" canNew="true"/>
 		</panel>
 		
 	</form>

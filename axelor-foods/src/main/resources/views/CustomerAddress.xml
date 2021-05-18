@@ -12,14 +12,20 @@
 	    <field name="fullAddess" />
     </grid>
 
-	<form name="om-customer-address-form" title="Customer Address" model="com.axelor.apps.om.db.CustomerAddress">
-		<panel name="firstPanel">
-			<field name="addressL4"/>
+	<form name="om-customer-address-form" title="Customer Address" model="com.axelor.apps.om.db.CustomerAddress" onSave="action-customer-address-set-full-address">
+		<panel name="firstPanel" >
+			<field name="addressL4" required="true" />
 		    <field name="addressL5" />
-		    <field name="zip"/>
-		    <field name="city" />
-		    <field name="country"/>
+		    <field name="zip" required="true" />
+		    <field name="city" required="true" />
+		    <field name="country" required="true" />
 		    <field name="fullAddess" colSpan="12" readonly="true"/>
 		</panel>
+		
 	</form>
+	
+	<action-attrs name="action-customer-address-set-full-address">
+			<attribute name="value" for="fullAddess" expr="eval: addressL4 + ', ' + zip+ ' ' + city + ' ' + country"/>
+	</action-attrs>	
+	
 	</object-views>

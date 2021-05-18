@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.3.xsd">
+
+	<module name="foods" package="com.axelor.apps.om.db" />
+
+	<entity name="OmInvoiceLine" lang="java">
+
+		
+		<many-to-one ref="com.axelor.apps.om.db.OmProduct" name="product" title="Product" />
+		<string name="unit" title="Unit"/>
+		
+		<decimal name="unitPrice" title="Unit price" min="0"/>
+		<decimal name="unitQty" title="Unit qty" min="0"/>
+		<decimal name="totalUniteCost" title="Total Unit Cost" min="0"/>
+		
+		<decimal name="singleiecePrice" title="Single piece price" min="0"/>
+		<decimal name="singleQty" title="Single qty" min="0"/>
+		<decimal name="totalSingleCost" title="Total single Cost" min="0"/>
+		
+		<decimal name="totalCost"  min="0"/>
+		
+		<many-to-one ref="com.axelor.apps.om.db.OmInvoice" name="invoice" title="Invoice" />
+		
+		<string name="status" title="Status"></string>
+		<boolean name="confirm" />
+		
+
+	</entity>
+
+</domain-models>

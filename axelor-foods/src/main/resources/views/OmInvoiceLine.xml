@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
+    
+    <grid name="om-invoice-line-grid" title="Invoice Lines" model="com.axelor.apps.om.db.OmInvoiceLine">
+	    <field name="product" />
+	    <field name="unit" />
+	    <field name="unitQty" />
+	    <field name="totalUniteCost"/>
+	    <field name="singleQty" />
+	    <field name="totalSingleCost" />
+	    <field name="totalCost" />
+    </grid>
+
+	<form name="om-invoice-line-form"  title="Select Invoice Product" model="com.axelor.apps.om.db.OmInvoiceLine" onNew="action-attrs-om-invoice-line-set-parent-invoice-for-relation" onSave="action-method-om-invoice-line-check-confirm">
+		
+		<panel name="firstPanel">
+		    <field name="product" title="Product" readonlyIf="confirm" required="true" canEdit="true" onChange="action-attrs-om-invoice-line-set-unit,action-method-om-invoice-line-avalilable-qty"/>
+		    <field name="unit" />
+		    
+		    <field name="unitPrice" colSpan="4" readonlyIf="confirm" onChange="action-attrs-om-invoice-line-set-product-cost"/>
+		    <field name="unitQty" colSpan="4" readonlyIf="confirm" onChange="action-methods-om-invoice-line-check-product-qty,action-attrs-om-invoice-line-set-product-cost" />
+		    <field name="totalUniteCost"  colSpan="4" readonly="true"/>
+		    
+		    <field name="singleiecePrice" readonlyIf="confirm" colSpan="4" onChange="action-attrs-om-invoice-line-set-product-cost" />
+		    <field name="singleQty" readonlyIf="confirm" colSpan="4" onChange="action-methods-om-invoice-line-check-product-qty,action-attrs-om-invoice-line-set-product-cost" />
+		    <field name="totalSingleCost" colSpan="4" readonly="true"/>
+		    
+		    <field name="totalCost" css="label-bold bold large" readonly="true" colSpan="12"/>
+		    <field name="status" css="label-bold bold" readonly="true" colSpan="12"/>
+		    <button hidden="true" onClick="action-attrs-on-invoice-line-set-confirm,action-method-om-invoice-line-less-qty,save" css="btn-success" readonlyIf="confirm" name="confirmProduct" title="Confirm Product" />
+		    <field name="confirm" hidden="true"/>
+		    <field name="invoice" hidden="true"/>
+		</panel>
+		
+		
+	</form>
+	
+	
+	<action-attrs name="action-attrs-om-invoice-line-set-unit" >
+		<attribute name="value" for="unit" expr="eval: product?.unit"/>
+		<attribute name="value" for="unitPrice" if="product != null" expr="eval:__repo__(CustomerPrise).all().filter('self.omProduct = ? AND self.customer = ?',product,__parent__.customer).fetchOne()?.unitPrise"/>
+		<attribute name="value" for="singleiecePrice" if="product != null" expr="eval:__repo__(CustomerPrise).all().filter('self.omProduct = ? AND self.customer = ?',product,__parent__.customer).fetchOne()?.singlePiecePrise"/>
+		<attribute name="value" for="unitQty" expr="eval: 0.00"/>
+		<attribute name="value" for="totalUniteCost" expr="eval: 0.00"/>
+		<attribute name="value" for="singleQty" expr="eval: 0.00"/>
+		<attribute name="value" for="totalSingleCost" expr="eval: 0.00"/>
+		<attribute name="value" for="totalCost" expr="eval: 0.00"/>
+	</action-attrs>
+	
+	
+	<action-attrs name="action-attrs-om-invoice-line-set-product-cost">
+		<attribute name="value" for="totalUniteCost" expr="eval: unitPrice * unitQty"/>
+		<attribute name="value" for="totalSingleCost" expr="eval: singleiecePrice * singleQty"/>
+		<attribute name="value" for="totalCost" expr="eval: (unitPrice * unitQty) + (singleiecePrice * singleQty)"/>
+	</action-attrs>
+	
+	<action-attrs name="action-attrs-on-invoice-line-set-confirm">
+		<attribute name="value" for="confirm" expr="eval: true"/>
+	</action-attrs>
+	
+	<action-attrs name="action-attrs-om-invoice-line-set-parent-invoice-for-relation">
+		<attribute name="value" for="invoice" expr="eval: __parent__"/>
+	</action-attrs>
+	
+	<action-method name="action-methods-om-invoice-line-check-product-qty">
+		<call class="com.axelor.apps.omfoods.web.OmInvoiceLineController" method="setProductQty"/>
+	</action-method>
+	
+	<action-method name="action-method-om-invoice-line-avalilable-qty">
+		<call class="com.axelor.apps.omfoods.web.OmInvoiceLineController" method="getAvailableQTY"/>
+	</action-method>
+	
+	<action-method name="action-method-om-invoice-line-less-qty"> 	
+		<call class="com.axelor.apps.omfoods.web.OmInvoiceLineController" method="lessProductQty"/>
+	</action-method>
+	
+	<action-method name="action-method-om-invoice-line-check-confirm">
+		<call class="com.axelor.apps.omfoods.web.OmInvoiceLineController" method="checkConfirm"/>
+	</action-method>
+	
+	</object-views>
