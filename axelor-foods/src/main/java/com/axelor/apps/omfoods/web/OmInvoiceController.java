@@ -49,21 +49,35 @@ public class OmInvoiceController {
       if (invoiceLine.isSelected()) {
         OmProduct product = invoiceLine.getProduct();
 
-        BigDecimal invoiceSingleQty = invoiceLine.getSingleQty();
-        BigDecimal invoiceUnitQty = invoiceLine.getUnitQty();
+        
+        BigDecimal invoiceProdPiece = invoiceLine.getTotalPiece();
+        BigDecimal invoiceProdCartoon = invoiceLine.getTotalCartoon();
+        
+        BigDecimal productPieceQty = product.getTotalPiece();
+        BigDecimal productCartoonQty = product.getUnitstock();
+        
+        BigDecimal avlProductPieceQty = productPieceQty.add(invoiceProdPiece);
+        BigDecimal avlProductCartoonQty = productCartoonQty.add(invoiceProdCartoon);
+       
+        product.setTotalPiece(avlProductPieceQty);
+        product.setUnitstock(avlProductCartoonQty);
+        
+//        BigDecimal invoiceSingleQty = invoiceLine.getSingleQty();
+//        BigDecimal invoiceUnitQty = invoiceLine.getUnitQty();
+//
+//        BigDecimal productUnitQty = product.getUnitstock();
+//        BigDecimal productSingleQty = product.getExtraSinglePiece();
+//
+//        BigDecimal avlProductUnitQty = productUnitQty.add(invoiceUnitQty);
+//        BigDecimal avlProductSingleQty = productSingleQty.add(invoiceSingleQty);
+//
+//        product.setUnitstock(avlProductUnitQty);
+//        product.setExtraSinglePiece(avlProductSingleQty);
 
-        BigDecimal productUnitQty = product.getUnitstock();
-        BigDecimal productSingleQty = product.getExtraSinglePiece();
-
-        BigDecimal avlProductUnitQty = productUnitQty.add(invoiceUnitQty);
-        BigDecimal avlProductSingleQty = productSingleQty.add(invoiceSingleQty);
-
-        product.setUnitstock(avlProductUnitQty);
-        product.setExtraSinglePiece(avlProductSingleQty);
-
-        BigDecimal unitPiece = avlProductUnitQty.multiply(product.getUnitPiece());
-        BigDecimal totalPieceQty = unitPiece.add(product.getExtraSinglePiece());
-        product.setTotalPiece(totalPieceQty);
+//        BigDecimal unitPiece = avlProductUnitQty.multiply(product.getUnitPiece());
+//        BigDecimal totalPieceQty = unitPiece.add(product.getExtraSinglePiece());
+//        product.setTotalPiece(totalPieceQty);
+        
         prodRepo.save(product);
       } else {
         updatedInvoiceLines.add(invoiceLine);
@@ -86,21 +100,37 @@ public class OmInvoiceController {
     for (OmInvoiceLine invoiceLine : invoiceLines) {
       OmProduct product = invoiceLine.getProduct();
 
-      BigDecimal invoiceSingleQty = invoiceLine.getSingleQty();
-      BigDecimal invoiceUnitQty = invoiceLine.getUnitQty();
+      
+      BigDecimal invoiceProdPiece = invoiceLine.getTotalPiece();
+      BigDecimal invoiceProdCartoon = invoiceLine.getTotalCartoon();
+      
+      BigDecimal productPieceQty = product.getTotalPiece();
+      BigDecimal productCartoonQty = product.getUnitstock();
+      
+      BigDecimal avlProductPieceQty = productPieceQty.subtract(invoiceProdPiece);
+      BigDecimal avlProductCartoonQty = productCartoonQty.subtract(invoiceProdCartoon);
+     
+      product.setTotalPiece(avlProductPieceQty);
+      product.setUnitstock(avlProductCartoonQty);
+      
+      
+//      
+//      BigDecimal invoiceSingleQty = invoiceLine.getSingleQty();
+//      BigDecimal invoiceUnitQty = invoiceLine.getUnitQty();
+//
+//      BigDecimal productUnitQty = product.getUnitstock();
+//      BigDecimal productSingleQty = product.getExtraSinglePiece();
+//
+//      BigDecimal avlProductUnitQty = productUnitQty.subtract(invoiceUnitQty);
+//      BigDecimal avlProductSingleQty = productSingleQty.subtract(invoiceSingleQty);
+//   
+//      product.setUnitstock(avlProductCartoonQty);
+//      product.setExtraSinglePiece(avlProductSingleQty);
 
-      BigDecimal productUnitQty = product.getUnitstock();
-      BigDecimal productSingleQty = product.getExtraSinglePiece();
-
-      BigDecimal avlProductUnitQty = productUnitQty.subtract(invoiceUnitQty);
-      BigDecimal avlProductSingleQty = productSingleQty.subtract(invoiceSingleQty);
-
-      product.setUnitstock(avlProductUnitQty);
-      product.setExtraSinglePiece(avlProductSingleQty);
-
-      BigDecimal unitPiece = avlProductUnitQty.multiply(product.getUnitPiece());
-      BigDecimal totalPieceQty = unitPiece.add(product.getExtraSinglePiece());
-      product.setTotalPiece(totalPieceQty);
+//      BigDecimal unitPiece = avlProductUnitQty.multiply(product.getUnitPiece());
+//      BigDecimal totalPieceQty = unitPiece.add(product.getExtraSinglePiece());
+//      product.setTotalPiece(totalPieceQty);
+      
       prodRepo.save(product);
     }
   }
@@ -109,7 +139,6 @@ public class OmInvoiceController {
   public void resetProduct(ActionRequest request, ActionResponse response) throws AxelorException {
 
     OmInvoice invoice = request.getContext().asType(OmInvoice.class);
-    OmInvoiceLineRepository invoiceLineRepo = Beans.get(OmInvoiceLineRepository.class);
     OmProductRepository prodRepo = Beans.get(OmProductRepository.class);
 
     List<OmInvoiceLine> invoiceLines = new ArrayList<OmInvoiceLine>();
@@ -118,21 +147,37 @@ public class OmInvoiceController {
     for (OmInvoiceLine invoiceLine : invoiceLines) {
       OmProduct product = invoiceLine.getProduct();
 
-      BigDecimal invoiceSingleQty = invoiceLine.getSingleQty();
-      BigDecimal invoiceUnitQty = invoiceLine.getUnitQty();
-
-      BigDecimal productUnitQty = product.getUnitstock();
-      BigDecimal productSingleQty = product.getExtraSinglePiece();
-
-      BigDecimal avlProductUnitQty = productUnitQty.add(invoiceUnitQty);
-      BigDecimal avlProductSingleQty = productSingleQty.add(invoiceSingleQty);
-
-      product.setUnitstock(avlProductUnitQty);
-      product.setExtraSinglePiece(avlProductSingleQty);
-
-      BigDecimal unitPiece = avlProductUnitQty.multiply(product.getUnitPiece());
-      BigDecimal totalPieceQty = unitPiece.add(product.getExtraSinglePiece());
-      product.setTotalPiece(totalPieceQty);
+      BigDecimal invoiceProdPiece = invoiceLine.getTotalPiece();
+      BigDecimal invoiceProdCartoon = invoiceLine.getTotalCartoon();
+      
+      BigDecimal productPieceQty = product.getTotalPiece();
+      BigDecimal productCartoonQty = product.getUnitstock();
+      
+      BigDecimal avlProductPieceQty = productPieceQty.add(invoiceProdPiece);
+      BigDecimal avlProductCartoonQty = productCartoonQty.add(invoiceProdCartoon);
+     
+      product.setTotalPiece(avlProductPieceQty);
+      product.setUnitstock(avlProductCartoonQty);
+      
+      
+      
+      
+//      BigDecimal invoiceSingleQty = invoiceLine.getSingleQty();
+//      BigDecimal invoiceUnitQty = invoiceLine.getUnitQty();
+//
+//      BigDecimal productUnitQty = product.getUnitstock();
+//      BigDecimal productSingleQty = product.getExtraSinglePiece();
+//
+//      BigDecimal avlProductUnitQty = productUnitQty.add(invoiceUnitQty);
+//      BigDecimal avlProductSingleQty = productSingleQty.add(invoiceSingleQty);
+//
+//      product.setUnitstock(avlProductUnitQty);
+//      product.setExtraSinglePiece(avlProductSingleQty);
+//
+//      BigDecimal unitPiece = avlProductUnitQty.multiply(product.getUnitPiece());
+//      BigDecimal totalPieceQty = unitPiece.add(product.getExtraSinglePiece());
+//      product.setTotalPiece(totalPieceQty);
+      
       prodRepo.save(product);
     }
 

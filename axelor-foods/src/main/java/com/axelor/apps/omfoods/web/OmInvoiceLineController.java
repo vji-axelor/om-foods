@@ -21,26 +21,17 @@ public class OmInvoiceLineController {
       response.setError("Please select Product");
       return;
     }
-
-    BigDecimal singleQty = new BigDecimal(invoiceLine.getSingleQty());
-    BigDecimal unitQty = new BigDecimal(invoiceLine.getUnitQty());
-    System.err.println();
-    BigDecimal prodSingQty = new BigDecimal(product.getExtraSinglePiece());
+    
+    BigDecimal totalLinePiece = new BigDecimal(invoiceLine.getTotalPiece());
+    
+    BigDecimal totalProdPiece = new BigDecimal(product.getTotalPiece());
     BigDecimal prodUnitQty = new BigDecimal(product.getUnitstock());
 
-    if (unitQty.compareTo(prodUnitQty) == 1) {
-      response.setValue("unitQty", new BigDecimal(0));
+    if (totalLinePiece.compareTo(totalProdPiece) == 1) {
+      response.setValue("totalPiece", new BigDecimal(0));
       response.setValue(
           "status",
-          "This product has " + prodUnitQty + " Unit and " + prodSingQty + " Single Quntity.");
-    }
-
-    if (singleQty.compareTo(prodSingQty) == 1) {
-      response.setValue("singleQty", new BigDecimal(0));
-      response.setValue(
-          "status",
-          "This product has " + prodUnitQty + " Unit and " + prodSingQty + " Single Quntity.");
-      return;
+          "This product has " + prodUnitQty + " Cartoon and/or " + totalProdPiece + " Piece.");
     }
   }
 
@@ -52,11 +43,11 @@ public class OmInvoiceLineController {
       response.setError("Please select Product");
       return;
     }
-    BigDecimal prodSingQty = new BigDecimal(product.getExtraSinglePiece());
+    BigDecimal prodPiece = new BigDecimal(product.getTotalPiece());
     BigDecimal prodUnitQty = new BigDecimal(product.getUnitstock());
     response.setValue(
         "status",
-        "This product has " + prodUnitQty + " Unit and " + prodSingQty + " Single Quntity.");
+        "This product has " + prodUnitQty + " Unit and " + prodPiece + " Single Quntity.");
   }
 
   public void lessProductQty(ActionRequest request, ActionResponse response)
@@ -68,11 +59,4 @@ public class OmInvoiceLineController {
     //	    response.setCanClose(true);
   }
 
-  public void checkConfirm(ActionRequest request, ActionResponse response) throws AxelorException {
-    OmInvoiceLine invoiceLine = request.getContext().asType(OmInvoiceLine.class);
-    if (invoiceLine.getConfirm() == false) {
-
-      throw new AxelorException(0, "Please Confirm The product");
-    }
-  }
 }

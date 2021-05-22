@@ -9,6 +9,13 @@
 
 		
 		<many-to-one ref="com.axelor.apps.om.db.OmProduct" name="product" title="Product" />
+		<string name="productCode" title="Product Code" />
+		<decimal name="cartoonPiece" title="Cartoon Piece"/>
+		
+		<decimal name="totalPiece" title="Total Piece" />
+		<decimal name="totalCartoon" title="Total Cartoon" />
+		<decimal name="piecePrise" title="Piece Prise" />
+		
 		<string name="unit" title="Unit"/>
 		
 		<decimal name="unitPrice" title="Unit price" min="0"/>
