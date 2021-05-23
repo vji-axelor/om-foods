@@ -47,7 +47,7 @@ public class OmInvoiceLineController {
     BigDecimal prodUnitQty = new BigDecimal(product.getUnitstock());
     response.setValue(
         "status",
-        "This product has " + prodUnitQty + " Unit and " + prodPiece + " Single Quntity.");
+        "This product has " + prodUnitQty + " Cartoon and/or " + prodPiece + " Single Quntity.");
   }
 
   public void lessProductQty(ActionRequest request, ActionResponse response)

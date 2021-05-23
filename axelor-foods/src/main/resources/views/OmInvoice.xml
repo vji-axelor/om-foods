@@ -12,6 +12,11 @@
     </grid>
 
 	<form name="om-invoice-form" title="Invoice" model="com.axelor.apps.om.db.OmInvoice" onNew="action-attrs-om-invoice-set-current-date">
+		<menubar>
+            <menu name="omInvoiceReportsMenu" title="Reports" icon="fa-files-o" showTitle="true">
+			  <item name="printItem" title="Print" action="save,action-om-invoice-method-print"/>
+			</menu>
+		</menubar>
 		
 		<panel name="firstPanel">
 		    <field name="invoiceNumber" title="Invoice Number"/>
@@ -75,6 +80,8 @@
 		<call class="com.axelor.apps.omfoods.web.OmInvoiceController" method="resetProduct"/>
 	</action-method>
 	
-	
+	<action-method name="action-om-invoice-method-print">
+		<call class="com.axelor.apps.omfoods.web.OmInvoiceController" method="printReport"/>
+	</action-method>
 	
 	</object-views>

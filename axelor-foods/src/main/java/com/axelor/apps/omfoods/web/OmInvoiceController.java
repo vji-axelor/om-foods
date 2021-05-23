@@ -1,12 +1,15 @@
 package com.axelor.apps.omfoods.web;
 
+import com.axelor.apps.ReportFactory;
 import com.axelor.apps.om.db.OmInvoice;
 import com.axelor.apps.om.db.OmInvoiceLine;
 import com.axelor.apps.om.db.OmProduct;
 import com.axelor.apps.om.db.repo.OmInvoiceLineRepository;
 import com.axelor.apps.om.db.repo.OmProductRepository;
+import com.axelor.apps.report.engine.ReportSettings;
 import com.axelor.exception.AxelorException;
 import com.axelor.inject.Beans;
+import com.axelor.meta.schema.actions.ActionView;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.google.inject.Singleton;
@@ -183,4 +186,17 @@ public class OmInvoiceController {
 
     response.setValue("products", null);
   }
+  
+  
+  public void printReport(ActionRequest request, ActionResponse response) throws AxelorException {
+	  OmInvoice invoice = request.getContext().asType(OmInvoice.class);
+	  String fileLink =
+	          ReportFactory.createReport("test.rptdesign", "title" + "-${date}")
+	              .addParam("OmInvoiceId", invoice.getId())
+	              .generate()
+	              .getFileLink();
+
+	      response.setView(ActionView.define("title").add("html", fileLink).map());
+  }
+  
 }
