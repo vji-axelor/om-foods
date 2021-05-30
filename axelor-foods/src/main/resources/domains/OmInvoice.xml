@@ -9,7 +9,9 @@
 
 		<string name="invoiceNumber" title="Invoice Number" namecolumn="true"/>
 		<string name="currency" title="Currency"/>
-		<decimal name="invoiceAmount" title="Total Amount"/>
+		<decimal name="invoiceAmount" title="Nett Amount"/>
+		<decimal name="invoiceTax" title="7% Tax"/>
+		<decimal name="grossAmount" title="Gross Amount" />
 		<date name="invoiceDate" title="invoiceDate" />
 		
 		<many-to-one ref="com.axelor.apps.om.db.OmCustomer" name="customer" title="Customer"/>

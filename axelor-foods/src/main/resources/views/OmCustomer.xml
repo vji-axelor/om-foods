@@ -19,7 +19,8 @@
 			</panel>
 	
 			<panel colSpan="9" name="generalInfoPanel" >
-				<field name="name" colSpan="4" css="label-bold bold large"/>
+				<field name="name" colSpan="6" css="label-bold bold large"/>
+				<field name="contectPersonName" colSpan="6" css="label-bold bold large"/>
 			</panel>
 		</panel>
 		

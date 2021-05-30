@@ -21,9 +21,9 @@ public class OmInvoiceLineController {
       response.setError("Please select Product");
       return;
     }
-    
+
     BigDecimal totalLinePiece = new BigDecimal(invoiceLine.getTotalPiece());
-    
+
     BigDecimal totalProdPiece = new BigDecimal(product.getTotalPiece());
     BigDecimal prodUnitQty = new BigDecimal(product.getUnitstock());
 
@@ -58,5 +58,4 @@ public class OmInvoiceLineController {
     iLine.setProductQty(invoiceLine);
     //	    response.setCanClose(true);
   }
-
 }
