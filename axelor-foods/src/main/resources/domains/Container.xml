@@ -12,6 +12,7 @@
 		<date name="arriveDate" title="Arrive Date"/>
 		<decimal name="totalProduct" title="Total Product"/>
 		<decimal name="totalCost" title="Total Cost"/>
+		<boolean name="confirm" />
 		
 		<one-to-many ref="com.axelor.apps.om.db.ContainerProductLine" name="products" title="Products" mappedBy="container"/>
 

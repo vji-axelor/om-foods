@@ -15,11 +15,31 @@
 		<panel name="firstPanel">
 			<field name="name" title="Container"/>
 		    <field name="code" />
-		    <field name="totalProduct" />
-		    <field name="totalCost"/>
+		    <field name="totalProduct" readonly="true" />
+		    <field name="totalCost" readonly="true" />
 		    <field name="arriveDate" />
 		</panel>
 		
-		<panel-related field="products"  canEdit="true" form-view="om-container-product-line-form" grid-view="om-container-product-line-grid"/>
+		<panel-related field="products"  
+		canEdit="true" 
+		form-view="om-container-product-line-form" 
+		grid-view="om-container-product-line-grid"
+		onChange="action-container-method-set-totalcost-container,save" />
+		
+		<panel sidebar="true">
+			<field name="confirm" title="Confirm" hidden="true"/>
+			<spacer/>
+			<field name="confirm" title="Confirm" hidden="true"/>
+			<button css="btn-success" onClick="action-method-om-invoice-set-available-product-qty,action-attrs-om-invoice-set-confirm,save" readonlyIf="confirm" name="confirmContainer" title="Confirm Container" />
+			<button css="btn-primary" onClick="action-method-om-invoice-remove-selected-product,action-method-om-invoice-set-total-amount,save" readonlyIf="!confirm" name="removeProduct" title="Remove Selected Product" />
+			<button css="btn-danger" onClick="action-method-om-invoice-reset-all-product,action-method-om-invoice-set-total-amount,action-attrs-om-invoice-remove-confirm,save" readonlyIf="!confirm" name="removeProduct" title="Remove All Product" />
+			
+		</panel>
+		
 	</form>
+	
+	<action-method name="action-container-method-set-totalcost-container">
+		<call class="com.axelor.apps.omfoods.web.ContainerController" method="calculateTotalCost"/>
+	</action-method>
+	
 	</object-views>

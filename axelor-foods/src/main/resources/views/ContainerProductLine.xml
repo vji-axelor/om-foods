@@ -4,20 +4,31 @@
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.3.xsd">
     
     <grid name="om-container-product-line-grid" title="Containers" editable="true" model="com.axelor.apps.om.db.ContainerProductLine">
-	    <field name="product" canEdit="true" />
-	    <field name="unit" readonly="true" />
-	    <field name="qty" canEdit="true" />
-	    <field name="prise" canEdit="true" />
+	    <field name="product" canEdit="true" onChange="action-container-product-line-set-zero-qty-prise" />
+	    <field name="unit" readonly="true" hidden="true" />
+	    <field name="qty" canEdit="true" onChange="action-container-product-line-attrs-add-product" />
+	    <field name="prise" canEdit="true" onChange="action-container-product-line-attrs-add-product" />
 	    <field name="totalCost" readonly="true"/>
     </grid>
 
 	<form name="om-container-product-line-form" title="Container" model="com.axelor.apps.om.db.ContainerProductLine">
 		<panel name="firstPanel">
-			<field name="product" />
-		    <field name="unit" readonly="true" />
-		    <field name="qty" />
-		    <field name="prise"/>
+			<field name="product" colSpan="12" onChange="action-container-product-line-set-zero-qty-prise" />
+		    <field name="unit" readonly="true" hidden="true" />
+		    <field name="qty" onChange="action-container-product-line-attrs-add-product" />
+		    <field name="prise" onChange="action-container-product-line-attrs-add-product"/>
 	    <field name="totalCost" readonly="true"/>
 		</panel>
 	</form>
+	
+	<action-attrs name="action-container-product-line-attrs-add-product">
+		<attribute name="value" for="totalCost" expr="eval: qty * prise" />
+	</action-attrs>
+
+	<action-attrs name="action-container-product-line-set-zero-qty-prise">
+		<attribute name="value" for="qty" expr="eval: 0" />
+		<attribute name="prise" for="qty" expr="eval: 0" />
+	</action-attrs>	
+	
+	
 	</object-views>

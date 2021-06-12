@@ -27,11 +27,11 @@
 		    
 		    <spacer/>
 		    <spacer/>
-		    <panel-related field="products" readonlyIf="confirm" canRemove="false"  onChange="action-method-om-invoice-set-total-amount,save" colSpan="12" showIf="customer != null" form-view="om-invoice-line-form" grid-view="om-invoice-line-grid"/>
+		    <panel-related field="products" readonlyIf="confirm" onChange="action-method-om-invoice-set-total-amount,save" colSpan="12" showIf="customer != null" form-view="om-invoice-line-form" grid-view="om-invoice-line-grid"/>
 		    
 		    <spacer/>
 		    <spacer/>
-		    <field name="description" colSpan="12" widget="html"/>
+		    <field name="description" colSpan="12" />
 		</panel>
 		
 		<panel sidebar="true">
