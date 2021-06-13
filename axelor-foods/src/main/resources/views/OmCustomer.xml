@@ -20,7 +20,7 @@
 	
 			<panel colSpan="9" name="generalInfoPanel" >
 				<field name="name" colSpan="6" css="label-bold bold large"/>
-				<field name="contectPersonName" colSpan="6" css="label-bold bold large"/>
+				<field name="contectPersonName" required="true" colSpan="6" css="label-bold bold large"/>
 			</panel>
 		</panel>
 		
@@ -32,7 +32,7 @@
 		</panel>
 		
 		<panel name="thirdPanel"> 
-			<field name="customerAddress" colSpan="6" required="true" canNew="true"/>
+			<field name="customerAddress" colSpan="6" required="true" canEdit="true" canNew="true"/>
 		</panel>
 		
 	</form>
