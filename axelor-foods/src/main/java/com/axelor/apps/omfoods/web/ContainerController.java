@@ -1,9 +1,5 @@
 package com.axelor.apps.omfoods.web;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.axelor.apps.om.db.Container;
 import com.axelor.apps.om.db.ContainerProductLine;
 import com.axelor.apps.om.db.OmProduct;
@@ -14,118 +10,118 @@ import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.google.inject.Singleton;
 import com.google.inject.persist.Transactional;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class ContainerController {
-  public void calculateTotalCost(ActionRequest request, ActionResponse response)
-      throws AxelorException {
-    Container container = request.getContext().asType(Container.class);
-    BigDecimal totalCost = new BigDecimal(0);
-    BigDecimal prodCount = new BigDecimal(0);
+	public void calculateTotalCost(ActionRequest request, ActionResponse response) throws AxelorException {
+		Container container = request.getContext().asType(Container.class);
+		BigDecimal totalCost = new BigDecimal(0);
+		BigDecimal prodCount = new BigDecimal(0);
 
-    if (container.getProducts() == null) {
-      response.setValue("totalProduct", prodCount);
-      response.setValue("totalCost", totalCost);
-      return;
-    }
+		if (container.getProducts() == null) {
+			response.setValue("totalProduct", prodCount);
+			response.setValue("totalCost", totalCost);
+			return;
+		}
 
-    List<ContainerProductLine> prodLines = container.getProducts();
-    for (ContainerProductLine productLine : prodLines) {
-      totalCost = totalCost.add(productLine.getTotalCost());
-      prodCount = prodCount.add(new BigDecimal(1));
-    }
+		List<ContainerProductLine> prodLines = container.getProducts();
+		for (ContainerProductLine productLine : prodLines) {
+			totalCost = totalCost.add(productLine.getTotalCost());
+			prodCount = prodCount.add(new BigDecimal(1));
+		}
 
-    response.setValue("totalProduct", prodCount);
-    response.setValue("totalCost", totalCost);
-  }
-  
-  @Transactional
-  public void addProductQty(ActionRequest request, ActionResponse response)
-	      throws AxelorException {
-	  Container container = request.getContext().asType(Container.class);
-	  OmProductRepository prodRepo = Beans.get(OmProductRepository.class);
+		response.setValue("totalProduct", prodCount);
+		response.setValue("totalCost", totalCost);
+	}
 
-	    List<ContainerProductLine> containerProducts = new ArrayList<ContainerProductLine>();
-	    containerProducts = container.getProducts();
+	@Transactional
+	public void addProductQty(ActionRequest request, ActionResponse response) throws AxelorException {
+		Container container = request.getContext().asType(Container.class);
+		OmProductRepository prodRepo = Beans.get(OmProductRepository.class);
 
-	    for (ContainerProductLine containerProduct : containerProducts) {
-	      OmProduct product = containerProduct.getProduct();
+		List<ContainerProductLine> containerProducts = new ArrayList<ContainerProductLine>();
+		containerProducts = container.getProducts();
 
-	      BigDecimal containerProductPiece = containerProduct.getQty();
+		for (ContainerProductLine containerProduct : containerProducts) {
+			OmProduct product = containerProduct.getProduct();
 
-	      BigDecimal productPieceQty = product.getTotalPiece();
-	      BigDecimal productCartoonPiece = product.getUnitPiece();
+			BigDecimal containerProductPiece = containerProduct.getQty();
 
-	      BigDecimal avlProductPieceQty = productPieceQty.add(containerProductPiece);
-	      BigDecimal avlProductCartoonQty = avlProductPieceQty.divide(productCartoonPiece);
+			BigDecimal productPieceQty = product.getTotalPiece();
+			BigDecimal productCartoonPiece = product.getUnitPiece();
 
-	      product.setTotalPiece(avlProductPieceQty);
-	      product.setUnitstock(avlProductCartoonQty);
+			BigDecimal avlProductPieceQty = productPieceQty.add(containerProductPiece);
+			BigDecimal avlProductCartoonQty = avlProductPieceQty.divide(productCartoonPiece);
 
-	      prodRepo.save(product);
-	    }
-  }
-  
-  @Transactional
-  public void removeSelectedProduct(ActionRequest request, ActionResponse response) throws AxelorException {
-	Container container = request.getContext().asType(Container.class);
-    OmProductRepository prodRepo = Beans.get(OmProductRepository.class);
+			product.setTotalPiece(avlProductPieceQty);
+			product.setUnitstock(avlProductCartoonQty);
 
-    List<ContainerProductLine> conProductLines = new ArrayList<ContainerProductLine>();
-    List<ContainerProductLine> updatedProductLines = new ArrayList<ContainerProductLine>();
-    conProductLines = container.getProducts();
+			prodRepo.save(product);
+		}
+	}
 
-    for (ContainerProductLine conProductLine : conProductLines) {
-      if (conProductLine.isSelected()) {
-        OmProduct product = conProductLine.getProduct();
+	@Transactional
+	public void removeSelectedProduct(ActionRequest request, ActionResponse response) throws AxelorException {
+		Container container = request.getContext().asType(Container.class);
+		OmProductRepository prodRepo = Beans.get(OmProductRepository.class);
 
-        BigDecimal containerProdPiece = conProductLine.getQty();
+		List<ContainerProductLine> conProductLines = new ArrayList<ContainerProductLine>();
+		List<ContainerProductLine> updatedProductLines = new ArrayList<ContainerProductLine>();
+		conProductLines = container.getProducts();
 
-        BigDecimal productPieceQty = product.getTotalPiece();
-        BigDecimal productCartoonPiece = product.getUnitPiece();
+		for (ContainerProductLine conProductLine : conProductLines) {
+			if (conProductLine.isSelected()) {
+				OmProduct product = conProductLine.getProduct();
 
-        BigDecimal avlProductPieceQty = productPieceQty.subtract(containerProdPiece);
-        BigDecimal avlProductCartoonQty = avlProductPieceQty.divide(productCartoonPiece);
+				BigDecimal containerProdPiece = conProductLine.getQty();
 
-        product.setTotalPiece(avlProductPieceQty);
-        product.setUnitstock(avlProductCartoonQty);
+				BigDecimal productPieceQty = product.getTotalPiece();
+				BigDecimal productCartoonPiece = product.getUnitPiece();
 
-        prodRepo.save(product);
-      } else {
-    	  updatedProductLines.add(conProductLine);
-      }
-    }
+				BigDecimal avlProductPieceQty = productPieceQty.subtract(containerProdPiece);
+				BigDecimal avlProductCartoonQty = avlProductPieceQty.divide(productCartoonPiece);
 
-    response.setValue("products", updatedProductLines);
-  }
-  
-  @Transactional
-  public void resetProduct(ActionRequest request, ActionResponse response) throws AxelorException {
+				product.setTotalPiece(avlProductPieceQty);
+				product.setUnitstock(avlProductCartoonQty);
 
-	Container container = request.getContext().asType(Container.class);
-    OmProductRepository prodRepo = Beans.get(OmProductRepository.class);
+				prodRepo.save(product);
+			} else {
+				updatedProductLines.add(conProductLine);
+			}
+		}
 
-    List<ContainerProductLine> conProductLines = new ArrayList<ContainerProductLine>();
-    conProductLines = container.getProducts();
+		response.setValue("products", updatedProductLines);
+	}
 
-    for (ContainerProductLine conProductLine : conProductLines) {
-    	OmProduct product = conProductLine.getProduct();
+	@Transactional
+	public void resetProduct(ActionRequest request, ActionResponse response) throws AxelorException {
 
-        BigDecimal containerProdPiece = conProductLine.getQty();
+		Container container = request.getContext().asType(Container.class);
+		OmProductRepository prodRepo = Beans.get(OmProductRepository.class);
 
-        BigDecimal productPieceQty = product.getTotalPiece();
-        BigDecimal productCartoonPiece = product.getUnitPiece();
+		List<ContainerProductLine> conProductLines = new ArrayList<ContainerProductLine>();
+		conProductLines = container.getProducts();
 
-        BigDecimal avlProductPieceQty = productPieceQty.subtract(containerProdPiece);
-        BigDecimal avlProductCartoonQty = avlProductPieceQty.divide(productCartoonPiece);
+		for (ContainerProductLine conProductLine : conProductLines) {
+			OmProduct product = conProductLine.getProduct();
 
-        product.setTotalPiece(avlProductPieceQty);
-        product.setUnitstock(avlProductCartoonQty);
+			BigDecimal containerProdPiece = conProductLine.getQty();
 
-        prodRepo.save(product);
-    }
+			BigDecimal productPieceQty = product.getTotalPiece();
+			BigDecimal productCartoonPiece = product.getUnitPiece();
 
-    response.setValue("products", null);
-  }
-  
+			BigDecimal avlProductPieceQty = productPieceQty.subtract(containerProdPiece);
+			BigDecimal avlProductCartoonQty = avlProductPieceQty.divide(productCartoonPiece);
+
+			product.setTotalPiece(avlProductPieceQty);
+			product.setUnitstock(avlProductCartoonQty);
+
+			prodRepo.save(product);
+		}
+
+		response.setValue("products", null);
+	}
 }
