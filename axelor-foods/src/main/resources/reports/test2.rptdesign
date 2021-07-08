@@ -518,6 +518,7 @@ where Invoice.id = ?
             <property name="borderRightWidth">thin</property>
             <property name="borderTopStyle">dashed</property>
             <property name="borderTopWidth">thin</property>
+            <property name="textAlign">center</property>
         </style>
         <style name="Table_column_saporator_doted" id="156">
             <property name="borderBottomStyle">none</property>
@@ -532,8 +533,6 @@ where Invoice.id = ?
         <style name="Table_center_data" id="166">
             <property name="borderBottomStyle">dotted</property>
             <property name="borderBottomWidth">thin</property>
-            <property name="textAlign">center</property>
-            <property name="whiteSpace">pre</property>
         </style>
         <style name="Total_amount_component" id="229">
             <property name="fontSize">10pt</property>
@@ -552,6 +551,34 @@ where Invoice.id = ?
         </style>
         <style name="Footer_uper_border" id="356">
             <property name="borderTopStyle">solid</property>
+        </style>
+        <style name="date_formate" id="938">
+            <structure name="dateTimeFormat">
+                <property name="category">Custom</property>
+                <property name="pattern">dd-MM-yyyy</property>
+                <property name="locale">de_CH</property>
+            </structure>
+        </style>
+        <style name="decimal_format" id="940">
+            <structure name="numberFormat">
+                <property name="category">Custom</property>
+                <property name="pattern">#0.00</property>
+                <property name="locale">de_DE</property>
+            </structure>
+        </style>
+        <style name="table_center_three_column_data_and_saporator" id="941">
+            <property name="borderLeftStyle">dashed</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightStyle">dashed</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="textAlign">center</property>
+        </style>
+        <style name="Table_right_aline_last_column_and_seporator" id="942">
+            <property name="borderLeftStyle">dashed</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightStyle">dashed</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="textAlign">right</property>
         </style>
     </styles>
     <page-setup>
@@ -994,7 +1021,7 @@ where Invoice.id = ?
                                     <cell id="490">
                                         <label id="491">
                                             <property name="fontSize">8pt</property>
-                                            <text-property name="text">omfoods.gmbh</text-property>
+                                            <text-property name="text">www.omfoods.gmbh</text-property>
                                         </label>
                                     </cell>
                                 </row>
@@ -1213,7 +1240,7 @@ where Invoice.id = ?
     </page-setup>
     <body>
         <grid id="23">
-            <property name="height">2.9510489510489513in</property>
+            <property name="height">2.902097902097902in</property>
             <property name="width">7.608391608391608in</property>
             <column id="24">
                 <property name="width">0.32167832167832167in</property>
@@ -1228,14 +1255,14 @@ where Invoice.id = ?
                 <property name="width">3.3146853146853146in</property>
             </column>
             <row id="88">
-                <property name="height">0.16083916083916083in</property>
+                <property name="height">0.04895104895104895in</property>
                 <cell id="89"/>
                 <cell id="90"/>
                 <cell id="91"/>
                 <cell id="92"/>
             </row>
             <row id="82">
-                <property name="height">1.006993006993007in</property>
+                <property name="height">1.0769230769230769in</property>
                 <cell id="83"/>
                 <cell id="84">
                     <property name="borderBottomStyle">solid</property>
@@ -1248,18 +1275,54 @@ where Invoice.id = ?
                 <cell id="86">
                     <property name="borderBottomStyle">solid</property>
                     <property name="borderBottomWidth">thin</property>
-                    <image id="87">
-                        <property name="height">0.7762237762237763in</property>
-                        <property name="width">1.6223776223776223in</property>
-                        <property name="source">embed</property>
-                        <property name="imageName">Logo.png</property>
-                    </image>
+                    <grid id="919">
+                        <property name="height">1.034965034965035in</property>
+                        <property name="width">3.272727272727273in</property>
+                        <column id="920">
+                            <property name="width">0.5524475524475524in</property>
+                        </column>
+                        <column id="921">
+                            <property name="width">2.7202797202797204in</property>
+                        </column>
+                        <row id="922">
+                            <property name="height">0.8391608391608392in</property>
+                            <cell id="923"/>
+                            <cell id="924">
+                                <image id="87">
+                                    <property name="marginLeft">18pt</property>
+                                    <property name="height">0.8321678321678322in</property>
+                                    <property name="width">1.6643356643356644in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">Logo.png</property>
+                                </image>
+                            </cell>
+                        </row>
+                        <row id="925">
+                            <property name="height">0.1958041958041958in</property>
+                            <cell id="926"/>
+                            <cell id="927">
+                                <label id="97">
+                                    <property name="fontSize">8pt</property>
+                                    <text-property name="text">OM Foods GmbH • Dürerplatz 2 • 12157 Berlin</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </grid>
                 </cell>
             </row>
             <row id="27">
                 <property name="height">0.5454545454545454in</property>
                 <cell id="28"/>
-                <cell id="29"/>
+                <cell id="29">
+                    <label id="928">
+                        <property name="fontSize">10pt</property>
+                    </label>
+                    <label id="93">
+                        <property name="fontSize">12pt</property>
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Rechnung</text-property>
+                    </label>
+                </cell>
                 <cell id="66">
                     <property name="colSpan">1</property>
                     <property name="rowSpan">3</property>
@@ -1300,7 +1363,7 @@ where Invoice.id = ?
                                 <property name="borderBottomStyle">solid</property>
                                 <property name="borderBottomWidth">thin</property>
                                 <label name="id111" id="581">
-                                    <property name="fontSize">12pt</property>
+                                    <property name="fontSize">10pt</property>
                                     <property name="fontWeight">bold</property>
                                     <property name="paddingTop">1pt</property>
                                     <text-property name="text">Empfänger</text-property>
@@ -1439,18 +1502,19 @@ where Invoice.id = ?
                                 <property name="rowSpan">1</property>
                                 <property name="borderRightStyle">solid</property>
                                 <property name="borderRightWidth">thin</property>
-                                <data id="71">
+                                <data id="937">
+                                    <property name="style">date_formate</property>
                                     <property name="fontSize">8.5pt</property>
                                     <property name="dataSet">om</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
-                                            <property name="name">Column Binding_1</property>
+                                            <property name="name">date</property>
                                             <expression name="expression" type="javascript">dataSetRow["idate"]</expression>
-                                            <property name="dataType">string</property>
+                                            <property name="dataType">date</property>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
-                                    <property name="resultSetColumn">Column Binding_1</property>
+                                    <property name="resultSetColumn">date</property>
                                 </data>
                             </cell>
                         </row>
@@ -1534,21 +1598,7 @@ where Invoice.id = ?
             <column id="99"/>
             <row id="100">
                 <property name="height">0.7972027972027972in</property>
-                <cell id="101">
-                    <label id="93">
-                        <property name="fontWeight">bold</property>
-                        <text-property name="text">OM Foods GmbH </text-property>
-                    </label>
-                    <label id="426">
-                        <text-property name="text">• Dürerplatz 2, 12157 Berlin</text-property>
-                    </label>
-                    <label id="95">
-                        <text-property name="text">• +49 (0)30 55 1089 78</text-property>
-                    </label>
-                    <label id="97">
-                        <text-property name="text">• info@omfoods.gmbh</text-property>
-                    </label>
-                </cell>
+                <cell id="101"/>
             </row>
         </grid>
         <table id="107">
@@ -1603,19 +1653,19 @@ where Invoice.id = ?
                 <property name="width">2.839160839160839in</property>
             </column>
             <column id="131">
-                <property name="style">Table_column_saporator_doted</property>
+                <property name="style">table_center_three_column_data_and_saporator</property>
                 <property name="width">0.7972027972027972in</property>
             </column>
             <column id="132">
-                <property name="style">Table_column_saporator_doted</property>
+                <property name="style">table_center_three_column_data_and_saporator</property>
                 <property name="width">0.8951048951048951in</property>
             </column>
             <column id="133">
-                <property name="style">Table_column_saporator_doted</property>
+                <property name="style">table_center_three_column_data_and_saporator</property>
                 <property name="width">0.8671328671328671in</property>
             </column>
             <column id="134">
-                <property name="style">Table_column_saporator_doted</property>
+                <property name="style">Table_right_aline_last_column_and_seporator</property>
                 <property name="width">0.8741258741258742in</property>
             </column>
             <header>
@@ -1656,6 +1706,7 @@ where Invoice.id = ?
                     <cell id="114">
                         <label id="140">
                             <property name="fontSize">9pt</property>
+                            <property name="textAlign">center</property>
                             <text-property name="text">Gesamtpreis</text-property>
                         </label>
                     </cell>
@@ -1679,24 +1730,28 @@ where Invoice.id = ?
                     </cell>
                     <cell id="118">
                         <data id="148">
+                            <property name="style">decimal_format</property>
                             <property name="fontSize">9pt</property>
                             <property name="resultSetColumn">totalpiece</property>
                         </data>
                     </cell>
                     <cell id="119">
                         <data id="149">
+                            <property name="style">decimal_format</property>
                             <property name="fontSize">9pt</property>
                             <property name="resultSetColumn">pieceprise</property>
                         </data>
                     </cell>
                     <cell id="120">
                         <data id="150">
+                            <property name="style">decimal_format</property>
                             <property name="fontSize">9pt</property>
                             <property name="resultSetColumn">totalcartoon</property>
                         </data>
                     </cell>
                     <cell id="121">
                         <data id="151">
+                            <property name="style">decimal_format</property>
                             <property name="fontSize">9pt</property>
                             <property name="resultSetColumn">totalcost</property>
                         </data>
@@ -1764,18 +1819,19 @@ where Invoice.id = ?
                             </cell>
                             <cell id="222">
                                 <data id="225">
+                                    <property name="style">decimal_format</property>
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="dataSet">om</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
-                                            <property name="name">Amount</property>
+                                            <property name="name">Netto</property>
                                             <expression name="expression" type="javascript">dataSetRow["itotalamount"]</expression>
-                                            <property name="dataType">string</property>
+                                            <property name="dataType">decimal</property>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
-                                    <property name="resultSetColumn">Amount</property>
+                                    <property name="resultSetColumn">Netto</property>
                                 </data>
                             </cell>
                         </row>
@@ -1790,18 +1846,19 @@ where Invoice.id = ?
                             </cell>
                             <cell id="462">
                                 <data id="459">
+                                    <property name="style">decimal_format</property>
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="dataSet">om</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
-                                            <property name="name">Tax amount</property>
+                                            <property name="name">Tax</property>
                                             <expression name="expression" type="javascript">dataSetRow["taxamount"]</expression>
-                                            <property name="dataType">string</property>
+                                            <property name="dataType">decimal</property>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
-                                    <property name="resultSetColumn">Tax amount</property>
+                                    <property name="resultSetColumn">Tax</property>
                                 </data>
                             </cell>
                         </row>
@@ -1816,18 +1873,19 @@ where Invoice.id = ?
                             </cell>
                             <cell id="465">
                                 <data id="451">
+                                    <property name="style">decimal_format</property>
                                     <property name="fontSize">10pt</property>
                                     <property name="fontWeight">normal</property>
                                     <property name="dataSet">om</property>
                                     <list-property name="boundDataColumns">
                                         <structure>
-                                            <property name="name">Gross Amount</property>
+                                            <property name="name">Gross</property>
                                             <expression name="expression" type="javascript">dataSetRow["grossamount"]</expression>
                                             <property name="dataType">decimal</property>
                                             <property name="allowExport">true</property>
                                         </structure>
                                     </list-property>
-                                    <property name="resultSetColumn">Gross Amount</property>
+                                    <property name="resultSetColumn">Gross</property>
                                 </data>
                             </cell>
                         </row>
@@ -1893,8 +1951,8 @@ where Invoice.id = ?
                     <label id="613">
                         <property name="fontSize">5pt</property>
                     </label>
-                    <label id="614">
-                        <property name="fontSize">8pt</property>
+                    <label id="943">
+                        <property name="fontWeight">bold</property>
                         <text-property name="text">Darshankumar Gondaliya</text-property>
                     </label>
                 </cell>
