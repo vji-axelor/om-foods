@@ -6,8 +6,8 @@
     <grid name="om-container-product-line-grid" title="Containers" editable="true" model="com.axelor.apps.om.db.ContainerProductLine">
 	    <field name="product" canEdit="true" onChange="action-container-product-line-set-zero-qty-prise" />
 	    <field name="unit" readonly="true" hidden="true" />
-	    <field name="qty" canEdit="true" onChange="action-container-product-line-attrs-add-product" />
-	    <field name="prise" canEdit="true" onChange="action-container-product-line-attrs-add-product" />
+	    <field name="qty" title="Total Number of Packet" canEdit="true" onChange="action-container-product-line-attrs-add-product" />
+	    <field name="prise" title="Price" canEdit="true" onChange="action-container-product-line-attrs-add-product" />
 	    <field name="totalCost" readonly="true"/>
     </grid>
 

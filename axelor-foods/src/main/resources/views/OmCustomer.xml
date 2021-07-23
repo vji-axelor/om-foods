@@ -6,10 +6,8 @@
     <grid name="om-customer-grid" title="Om Customer" model="com.axelor.apps.om.db.OmCustomer" orderBy="name">
 	    <field name="picture" widget="Image"/>
 	    <field name="name"/>
-	    <field name="stock"/>
-	    <field name="code" />
-	    <field name="salePrice" width="120" x-scale="2"/>
-	    <field name="purchasePrice" width="120" x-scale="2"/>
+	   	<field name="mobilePhone"/>
+	   	<field name="emailAddress"/>
     </grid>
 
 	<form name="om-customer-form" title="Om Customer" model="com.axelor.apps.om.db.OmCustomer" width="1000px">
@@ -20,7 +18,7 @@
 	
 			<panel colSpan="9" name="generalInfoPanel" >
 				<field name="name" colSpan="6" css="label-bold bold large"/>
-				<field name="contectPersonName" required="true" colSpan="6" css="label-bold bold large"/>
+				<field name="contectPersonName" title="Contact Person" required="true" colSpan="6" css="label-bold bold large"/>
 			</panel>
 		</panel>
 		

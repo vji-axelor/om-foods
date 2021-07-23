@@ -6,10 +6,8 @@
     <grid name="om-product-grid" title="Om Products" model="com.axelor.apps.om.db.OmProduct" orderBy="name">
 	    <field name="picture" widget="Image"/>
 	    <field name="name"/>
-	    <field name="stock"/>
-	    <field name="code" />
-	    <field name="salePrice" width="120" x-scale="2"/>
-	    <field name="purchasePrice" width="120" x-scale="2"/>
+	    <field name="code"/>
+	    <field name="unitstock"/>
     </grid>
 
 	<form name="om-product-form" title="Om Product" model="com.axelor.apps.om.db.OmProduct" width="1000px" >
@@ -28,9 +26,9 @@
 		<panel name="secondPanel"> 
 		 <spacer/>
 		 <spacer/>
-			<field name="unit" colSpan="3" title="Cartoon"/>
-			<field name="unitPiece" colSpan="3" title="Cartoon Piece" onChange="action-omproduct-attrs-set-product-all-stock-prise"/>
-			<field name="unitstock" colSpan="3" title="Total Cartoon" onChange="action-omproduct-attrs-set-total-piece"/>
+			<field name="unit" colSpan="3" title="Unit"/>
+			<field name="unitPiece" colSpan="3" title="Piece Per Cartoon" onChange="action-omproduct-attrs-set-product-all-stock-prise"/>
+			<field name="unitstock" colSpan="3" title="Total Unit Quantity" onChange="action-omproduct-attrs-set-total-piece"/>
 			<field name="extraSinglePiece" colSpan="3" onChange=""/>
 		</panel>
 		
@@ -38,13 +36,13 @@
 			<spacer/>
 		 	<spacer/>
 			<field name="piecePurchasePrice" colSpan="4" onChange="action-omproduct-attrs-set-unit-purchase-prise"/>
-			<field name="unitPurchasePrice" colSpan="6" title="Cartoon Purchase Prise" readonly="true"/>
-			<field name="pieceSalePrice" colSpan="4" onChange="action-omproduct-attrs-set-unit-sale-prise"/>
-			<field name="unitSalePrice" colSpan="6" title="Cartoon Sale Prise" readonly="true"/>
+			<field name="unitPurchasePrice" colSpan="6" title="Cartoon Purchase Price" readonly="true"/>
+			<field name="pieceSalePrice" colSpan="4" title="Single Piece Selling Price" onChange="action-omproduct-attrs-set-unit-sale-prise"/>
+			<field name="unitSalePrice" colSpan="6" title="Cartoon Selling Price" readonly="true"/>
 		</panel>
 		
 		<panel-tabs>
-			<panel-related editable="true" field="customerPrise" form-view="om-customer-prise-form" grid-view="om-customer-prise-grid" />
+			<panel-related editable="true" field="customerPrise" title="Customers Price" form-view="om-customer-prise-form" grid-view="om-customer-prise-grid" />
 		</panel-tabs>
 		
 	</form>

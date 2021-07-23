@@ -5,15 +5,15 @@
     
     <grid name="om-customer-prise-grid" title="Customer Prise" model="com.axelor.apps.om.db.CustomerPrise">
 	    <field name="customer" readonlyIf="customer != null" onChange="action-customer-prise-attrs-set-personal-prise"/>
-	    <field name="singlePiecePrise" />
-	    <field name="unitPrise" />
+	    <field name="singlePiecePrise" title="Personal Single Piece Price" onChange="action-customer-prise-multiply-cartoon-prise" />
+	    <field name="unitPrise" title="Personal Unit Price"/>
     </grid>
 
 	<form name="om-customer-prise-form" title="Customer Prise" model="com.axelor.apps.om.db.CustomerPrise">
 		<panel name="firstPanel">
 			<field name="customer" readonlyIf="customer != null" onChange="action-customer-prise-attrs-set-personal-prise"/>
-			<field name="singlePiecePrise" />
-		    <field name="unitPrise" />
+			<field name="singlePiecePrise" title="Personal Single Piece Price" />
+		    <field name="unitPrise" title="Personal Unit Price" />
 		</panel>
 	</form>
 	
@@ -21,5 +21,9 @@
 		<attribute name="value" for="singlePiecePrise" expr="eval: __parent__.pieceSalePrice"/>
 		<attribute name="value" for="unitPrise" expr="eval: __parent__.unitSalePrice"/>
 	</action-attrs>	
+	
+	<action-attrs name="action-customer-prise-multiply-cartoon-prise">
+		<attribute name="value" for="unitPrise" expr="eval: __parent__.unitPiece * singlePiecePrise"/>
+	</action-attrs>
 	
 	</object-views>

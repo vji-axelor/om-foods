@@ -8,8 +8,8 @@
 	<entity name="CustomerPrise" lang="java">
 
        <many-to-one ref="com.axelor.apps.om.db.OmCustomer" name="customer" title="Customer"/>
-       <decimal name="unitPrise" title="Personal Unit Prise" />
-       <decimal name="singlePiecePrise" title="Personal Single Piece Prise"/>
+       <decimal name="unitPrise" title="Personal Unit Price" />
+       <decimal name="singlePiecePrise" title="Personal Single Piece Price"/>
        <many-to-one ref="com.axelor.apps.om.db.OmProduct" name="omProduct"/>
 <!--  
 address

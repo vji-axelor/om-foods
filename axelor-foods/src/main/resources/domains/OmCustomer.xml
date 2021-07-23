@@ -9,7 +9,7 @@
 
 		<many-to-one name="picture" ref="com.axelor.meta.db.MetaFile" />
 		<string name="name" title="Name/Company Name" required="true" />
-		<string name="contectPersonName" title="Contect Person"/>
+		<string name="contectPersonName" title="Contact Person"/>
 		<string name="emailAddress" title="Email"/>
 	    <string name="fixedPhone" title="Fixed phone"/>
 	    <string name="mobilePhone" title="Mobile phone"/>

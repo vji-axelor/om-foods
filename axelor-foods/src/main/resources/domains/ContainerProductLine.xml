@@ -9,8 +9,8 @@
 
 		<many-to-one ref="com.axelor.apps.om.db.OmProduct" name="product" title="Product" />
 		<string name="unit" title="Unit" />
-		<decimal name="qty" title="Qty" />
-		<decimal name="prise" title="Prise"/>
+		<decimal name="qty" title="Total Number of Packet" />
+		<decimal name="prise" title="Price"/>
 		<decimal name="totalCost" title="Total Cost" />
 		
 		<many-to-one ref="com.axelor.apps.om.db.Container" name="container" />
